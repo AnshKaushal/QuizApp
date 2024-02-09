@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react"
 const Quiz = () => {
   const [questions, setQuestions] = useState([])
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
-  const [selectedOption, setSelectedOption] = useState("")
+  const [selectedOptionIndex, setSelectedOptionIndex] = useState(-1)
   const [score, setScore] = useState(0)
   const [submitted, setSubmitted] = useState(false)
 
@@ -30,12 +30,12 @@ const Quiz = () => {
     }
   }
 
-  const handleOptionChange = (option) => {
-    setSelectedOption(option)
+  const handleOptionChange = (index) => {
+    setSelectedOptionIndex(index)
   }
 
   const handleSubmit = async () => {
-    if (!selectedOption) return
+    if (selectedOptionIndex === -1) return
 
     try {
       const response = await fetch("http://localhost:2000/quiz/submit", {
@@ -46,11 +46,13 @@ const Quiz = () => {
         },
         body: JSON.stringify({
           answers: [
-            { questionId: questions[currentQuestionIndex]._id, selectedOption },
+            {
+              questionId: questions[currentQuestionIndex]._id,
+              selectedOption: selectedOptionIndex,
+            },
           ],
         }),
       })
-      console.log(response)
       if (!response.ok) {
         throw new Error("Failed to submit answer")
       }
@@ -67,7 +69,7 @@ const Quiz = () => {
   const handleNextQuestion = () => {
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1)
-      setSelectedOption("")
+      setSelectedOptionIndex(-1)
       setSubmitted(false)
     }
   }
@@ -85,9 +87,8 @@ const Quiz = () => {
                   type="radio"
                   id={`option${index}`}
                   name="options"
-                  value={option}
-                  checked={option === selectedOption}
-                  onChange={() => handleOptionChange(option)}
+                  checked={index === selectedOptionIndex}
+                  onChange={() => handleOptionChange(index)}
                 />
                 <label htmlFor={`option${index}`}>{option}</label>
               </li>
