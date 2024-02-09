@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import { Link } from "react-router-dom"
 
 const Quiz = () => {
   const [questions, setQuestions] = useState([])
@@ -108,6 +109,7 @@ const Quiz = () => {
             <button onClick={handleSubmit}>Submit</button>
           )}
           <p>Score: {score}</p>
+          <Link to="/">Back</Link>
         </div>
       )}
     </div>

@@ -49,21 +49,34 @@ const App = () => {
   })
 
   return (
-    <div>
+    <div className="container">
       <h1>Quiz App</h1>
+      <p>Made by Ansh Kaushal &#91;2111981043&#93;</p>
       {isLoggedIn ? (
         <>
           <h1>Welcome back, {name}!</h1>
           {rollNo && <h2>Roll No: {rollNo}</h2>}
-          <Link to="/attempts">Your attempts</Link>
-          <Link to="/quiz">Take Quiz</Link>
-          <button onClick={handleSignOut}>Sign Out</button>
+          <div className="links-container">
+            <Link to="/attempts" className="link">
+              Your attempts
+            </Link>
+            <Link to="/quiz" className="link">
+              Take Quiz
+            </Link>
+          </div>
+          <button onClick={handleSignOut} className="button">
+            Sign Out
+          </button>
         </>
       ) : (
-        <>
-          <Link to="/sign-up">Sign Up</Link>
-          <Link to="/sign-in">Sign In</Link>
-        </>
+        <div className="links-container">
+          <Link to="/sign-up" className="link">
+            Sign Up
+          </Link>
+          <Link to="/sign-in" className="link">
+            Sign In
+          </Link>
+        </div>
       )}
     </div>
   )

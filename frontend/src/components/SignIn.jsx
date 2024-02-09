@@ -41,16 +41,18 @@ const SignIn = () => {
   }, [])
 
   return (
-    <div>
+    <div className="form-container">
       <form onSubmit={handleSubmit}>
         <input
           type="text"
           value={rollNo}
+          placeholder="Your roll number..."
           onChange={(e) => setRollNo(e.target.value)}
         />
         <input
           type="password"
           value={password}
+          placeholder="Your password..."
           onChange={(e) => setPassword(e.target.value)}
         />
         <button type="submit">Sign In</button>

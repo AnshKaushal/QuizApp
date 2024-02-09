@@ -6,6 +6,7 @@ import App from "./App"
 import Signup from "./components/Signup"
 import SignIn from "./components/SignIn"
 import Quiz from "./components/Quiz"
+import Attempts from "./components/Attempts"
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
   {
     path: "/quiz",
     element: <Quiz />,
+  },
+  {
+    path: "/attempts",
+    element: <Attempts />,
   },
 ])
 

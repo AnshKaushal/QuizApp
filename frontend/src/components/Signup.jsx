@@ -44,21 +44,24 @@ const Signup = () => {
   }
 
   return (
-    <div>
+    <div className="form-container">
       <form onSubmit={handleSubmit}>
         <input
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          placeholder="Your name..."
         />
         <input
           type="number"
           value={age}
+          placeholder="Your age..."
           onChange={(e) => setAge(e.target.value)}
         />
         <input
           type="text"
           value={rollNo}
+          placeholder="Your roll number..."
           onChange={(e) => setRollNo(e.target.value)}
         />
         <select value={gender} onChange={(e) => setGender(e.target.value)}>
@@ -68,11 +71,13 @@ const Signup = () => {
         <input
           type="password"
           value={password}
+          placeholder="Your password..."
           onChange={(e) => setPassword(e.target.value)}
         />
         <input
           type="password"
           value={confirmPass}
+          placeholder="Confirm password..."
           onChange={(e) => setConfirmPass(e.target.value)}
         />
         <button type="submit">Sign Up</button>
